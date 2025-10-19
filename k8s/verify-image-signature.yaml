@@ -1,0 +1,27 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-signed-images
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: check-signature
+      match:
+        resources:
+          kinds:
+            - Pod
+      verifyImages:
+        - imageReferences:
+            - "hodu26/slsa-demo*"
+            - "docker.io/hodu26/slsa-demo*"
+            - "ghcr.io/hodu26/slsa-demo*"
+          required: true
+          verifyDigest: true
+          attestors:
+            - entries:
+                - keyless:
+                    rekor:
+                      url: https://rekor.sigstore.dev
+                    issuer: "https://token.actions.githubusercontent.com"
+                    subject: "https://github.com/hodu26/slsa-demo/.github/workflows/build-sign.yaml@refs/heads/main"
