@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/hodu26/slsa-demo:sha-e5b700c32941475912d96159d228b5ab717bdaf3
+          image: ghcr.io/hodu26/slsa-demo:sha-2d67050227025e871650781615eb6704ac9b9bda
           ports:
             - containerPort: 8080 
