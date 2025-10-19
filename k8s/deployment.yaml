@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: slsa-demo
+  namespace: slsa-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slsa-demo
+  template:
+    metadata:
+      labels:
+        app: slsa-demo
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/hodu26/slsa-demo:sha-45aca571676a6020f1a2dc8d6aef6be82fbc138e
+          ports:
+            - containerPort: 8080 
