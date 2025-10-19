@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write   # k8s manifest 수정용 (이미지 갱신)
       id-token: write   # keyless 서명용
       packages: write   # GHCR push 권한
 
